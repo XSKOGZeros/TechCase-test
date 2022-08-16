@@ -15,10 +15,11 @@ angular.module("registrationControllerModule", [])
     $scope.register = function(){
         $scope.formParams.nameValid=true;
         $scope.formParams.ageValid=true;
+        var age = parseInt($scope.formParams.age);
         if($scope.formParams.name==""){
             $scope.formParams.nameValid=false;
         }
-        if(isNaN(parseInt($scope.formParams.age))){
+        if(isNaN(age) || age<0 || age>120){
             $scope.formParams.ageValid=false;
         }
         if( $scope.formParams.nameValid && $scope.formParams.ageValid){

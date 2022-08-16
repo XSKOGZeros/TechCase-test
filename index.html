@@ -22,12 +22,12 @@
                         <label for="name">Name</label><span style="color: red;"> *</span>
                         <input type="text" class="form-control mt-1" ng-model="formParams.name" id="name" ng-style="formParams.nameValid ? {'border-color':'gray'} : {'border-color':'red'}"
                          style="text-transform:uppercase;">
-                        <small ng-if="!formParams.nameValid" class="form-text" style="color: red;">This field is required.</small>
+                        <small ng-if="!formParams.nameValid" class="form-text" style="color: red;">Please, enter a valid input.</small>
                     </div>
                     <div class="form-group mt-3 text-white"  >
                         <label for="age">Age</label><span style="color: red;"> *</span>
                         <input type="number" class="form-control mt-1" ng-model="formParams.age" ng-style="formParams.ageValid ? {'border-color':'gray'} : {'border-color':'red'}"  id="age">
-                        <small ng-if="!formParams.ageValid" class="form-text" style="color: red;">This field is required.</small>
+                        <small ng-if="!formParams.ageValid" class="form-text" style="color: red;">Please, enter a valid input.</small>
                     </div>
                     <button type="submit" ng-click="register()" class="btn btn-primary mt-3 text-white">Register</button>
                     </form>
@@ -63,26 +63,26 @@
                     <div class="form-check col">
                         <input class="form-check-input" ng-model="formParams.category.child" type="checkbox" value="" id="checkbox">
                         <label class="form-check-label" for="checkbox">
-                        Criança
+                        Child
                         </label>
                     </div>
                     <div class="form-check col">
                         <input class="form-check-input" ng-model="formParams.category.teenager" type="checkbox" value="" id="checkbox">
                         <label class="form-check-label" for="checkbox">
-                        Adolescente
+                        Teenager
                         </label>
                     </div>
                     <div class="w-100"></div>
                     <div class="form-check col">
                         <input class="form-check-input" ng-model="formParams.category.adult" type="checkbox" value="" id="checkbox">
                         <label class="form-check-label" for="checkbox">
-                        Adulto
+                        Adult
                         </label>
                     </div>
                     <div class="form-check col">
                         <input class="form-check-input" ng-model="formParams.category.elderly" type="checkbox" value="" id="checkbox">
                         <label class="form-check-label" for="checkbox">
-                        Idoso
+                        Elderly
                         </label>
                     </div>
                 </div>
