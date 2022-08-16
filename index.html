@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html ng-app="registrationControllerModule">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration Forms</title>
+    <script src="lib/angular.min.js"></script>
+    <script src="js/registrationController.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body> 
+    <!-- Flex container to divide the page into 2 halfs --> 
+    <div ng-controller="registrationController" class="main-container">
+
+        <!-- Left side of the page // forms-->
+        <div class="box-50" style="display: flex; justify-content: center; align-items: center;"> 
+            <div class="border border-white rounded p-3 w-75"> 
+                <h1 class="text-center text-white">Registration Form</h1>
+                <form>
+                    <div class="form-group mt-3 text-white">
+                        <label for="name">Name</label><span style="color: red;"> *</span>
+                        <input type="text" class="form-control mt-1" ng-model="formParams.name" id="name" ng-style="formParams.nameValid ? {'border-color':'gray'} : {'border-color':'red'}"
+                         style="text-transform:uppercase;">
+                        <small ng-if="!formParams.nameValid" class="form-text" style="color: red;">This field is required.</small>
+                    </div>
+                    <div class="form-group mt-3 text-white"  >
+                        <label for="age">Age</label><span style="color: red;"> *</span>
+                        <input type="number" class="form-control mt-1" ng-model="formParams.age" ng-style="formParams.ageValid ? {'border-color':'gray'} : {'border-color':'red'}"  id="age">
+                        <small ng-if="!formParams.ageValid" class="form-text" style="color: red;">This field is required.</small>
+                    </div>
+                    <button type="submit" ng-click="register()" class="btn btn-primary mt-3 text-white">Register</button>
+                    </form>
+            </div>
+        </div>
+
+        <!-- Right side of the page // entry table -->
+        <div class="col-sm p-3 box-50">
+
+            <!-- entry table-->
+            <div class="table-container">
+                <table class="table table-borderless table-striped text-white">
+                    <thead style="background-color: #002e63;">
+                        <th scope="col" style="width: 33.3%;">Name</th>
+                        <th scope="col" style="width: 33.3%;">Age</th>
+                        <th scope="col" style="width: 33.4%;">Category</th>
+                        </tr>
+                    </thead>
+                    <tbody style="background-color: #023f85;">
+                        <tr ng-repeat="person in personArray" ng-if="formParams.category[person.category]">
+                            <td >{{person.name}}</td>
+                            <td >{{person.age}}</td>
+                            <td >{{person.category}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- filters -->
+            <div class="container mt-3 border border-white rounded px-5 py-2 text-white" style="font-weight: bold;">
+                <h3 class="text-center"> Filters </h3>
+                <div class="row">
+                    <div class="form-check col">
+                        <input class="form-check-input" ng-model="formParams.category.child" type="checkbox" value="" id="checkbox">
+                        <label class="form-check-label" for="checkbox">
+                        Criança
+                        </label>
+                    </div>
+                    <div class="form-check col">
+                        <input class="form-check-input" ng-model="formParams.category.teenager" type="checkbox" value="" id="checkbox">
+                        <label class="form-check-label" for="checkbox">
+                        Adolescente
+                        </label>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="form-check col">
+                        <input class="form-check-input" ng-model="formParams.category.adult" type="checkbox" value="" id="checkbox">
+                        <label class="form-check-label" for="checkbox">
+                        Adulto
+                        </label>
+                    </div>
+                    <div class="form-check col">
+                        <input class="form-check-input" ng-model="formParams.category.elderly" type="checkbox" value="" id="checkbox">
+                        <label class="form-check-label" for="checkbox">
+                        Idoso
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+ 
+</html>
