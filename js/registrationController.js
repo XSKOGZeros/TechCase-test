@@ -15,15 +15,15 @@ angular.module("registrationControllerModule", [])
     $scope.register = function(){
         $scope.formParams.nameValid=true;
         $scope.formParams.ageValid=true;
-        var age = parseInt($scope.formParams.age);
+        var age = Number($scope.formParams.age);
         if($scope.formParams.name==""){
             $scope.formParams.nameValid=false;
         }
-        if(isNaN(age) || age<0 || age>120){
+        if(isNaN(age) || age<0 || age>120 || age % 1 != 0){
             $scope.formParams.ageValid=false;
         }
         if( $scope.formParams.nameValid && $scope.formParams.ageValid){
-            var entry = {name: $scope.formParams.name.toUpperCase(), age: parseInt($scope.formParams.age), category: $scope.getCategory($scope.formParams.age)};
+            var entry = {name: $scope.formParams.name.toUpperCase(), age: age, category: $scope.getCategory($scope.formParams.age)};
             arrayUtils.sortedInsertion($scope.personArray, entry);
             $scope.formParams.name="";
             $scope.formParams.age="";
@@ -32,16 +32,16 @@ angular.module("registrationControllerModule", [])
 
     // Get the category of the person
     $scope.getCategory = function(age){
-        if(age<=11){//0-11
+        if(age<=11){//[0,11]
             return "child";
         }
-        else if(age<=19){//12-19
+        else if(age<=19){//[12,19]
             return "teenager";
         }
-        else if(age<=64){//20-64
+        else if(age<=64){//[20,64]
             return "adult";
         }
-        else{ //65+
+        else{ //[65,120]
             return "elderly";
         }
     }
